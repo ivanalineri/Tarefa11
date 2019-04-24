@@ -1,14 +1,19 @@
 package br.com.digitalhouse;
 
+import java.util.Objects;
+
 public class Funcionario {
     private String nome;
-    private float salario;
-    private double dataDeAdmin;
+    private Double salario;
+    private String dataAdmissao;
 
-    public Funcionario(String nome, float salario, double dataDeAdmin) {
+    public Funcionario(String nome, Double salario, String dataAdmissao) {
         this.nome = nome;
         this.salario = salario;
-        this.dataDeAdmin = dataDeAdmin;
+        this.dataAdmissao = dataAdmissao;
+    }
+
+    public Funcionario() {
     }
 
     public String getNome() {
@@ -19,19 +24,24 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public float getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(float salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 
-    public double getDataDeAdmin() {
-        return dataDeAdmin;
+    public String getDataAdmissao() {
+        return dataAdmissao;
     }
 
-    public void setDataDeAdmin(double dataDeAdmin) {
-        this.dataDeAdmin = dataDeAdmin;
+    public void setDataAdmissao(String dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, dataAdmissao);
     }
 }

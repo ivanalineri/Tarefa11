@@ -1,43 +1,66 @@
 package br.com.digitalhouse;
 
-public class Empresa extends Departamento {
-    public float cnpj;
-    public String nome;
-    public Departamento departamento;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Empresa(String nome, float salario, double dataDeAdmin, float cnpj, String nome1, String departamento) {
-        super(nome, salario, dataDeAdmin);
-        this.cnpj = cnpj;
-        this.nome = nome1;
-        this.departamento = departamento;
+public class Empresa {
+    private String nomeEmpresa;
+    private String CNPJ;
+    private List<Departamento> departamentos = new ArrayList<>();
+
+    public Empresa(String nomeEmpresa, String CNPJ, List<Departamento> departamentos) {
+        this.nomeEmpresa = nomeEmpresa;
+        this.CNPJ = CNPJ;
+        this.departamentos = departamentos;
     }
 
-    public float getCnpj() {
-        return cnpj;
+    public Empresa(String nomeEmpresa, String CNPJ) {
+        this.nomeEmpresa = nomeEmpresa;
+        this.CNPJ = CNPJ;
     }
 
-    public void setCnpj(float cnpj) {
-        this.cnpj = cnpj;
+    public String getNomeEmpresa() {
+        return nomeEmpresa;
     }
 
-    @Override
-    public String getNome() {
-        return nome;
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa;
     }
 
-    @Override
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getCNPJ() {
+        return CNPJ;
     }
 
-    public Departamento getDepartamento() {
-        return departamento;
+    public void setCNPJ(String CNPJ) {
+        this.CNPJ = CNPJ;
     }
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
+    public List<Departamento> getDepartamentos() {
+        return departamentos;
     }
 
+    public void setDepartamentos(List<Departamento> departamentos) {
+        this.departamentos = departamentos;
+    }
 
+    public void imprimirEmpresa(){
+        Funcionario funcionario;
+        System.out.println("\n--- IMPRESSAO EMPRESA --- ");
+        System.out.println("Empresa: "+this.nomeEmpresa+
+                "\nCNPJ: "+this.CNPJ);
 
+        for (Departamento departamento : this.departamentos) {
+            System.out.println("--- Departamento: "+departamento.getNomeDepto()+
+                    "\n--- Funcionarios");
+
+            for (int chave : departamento.getFuncionarios().keySet()) {
+                funcionario = departamento.getFuncionarios().get(chave);
+                System.out.println( "Nome: "+ funcionario.getNome()+
+                        "\t Salario: "+funcionario.getSalario()+
+                        "\t Admissão: "+funcionario.getDataAdmissao());
+            }
+
+        }
+
+    }
 }
